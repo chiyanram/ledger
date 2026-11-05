@@ -1,0 +1,8 @@
+.gradle/
+build/
+.idea/
+*.iml
+.claude/settings.local.json
+.claude/worktrees/
+.claude/packs/
+.claude/runs/

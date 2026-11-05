@@ -1,0 +1,11 @@
+# A version here means the Spring Boot BOM does not manage that coordinate. Everything else takes the BOM's version.
+[versions]
+springBoot = "4.1.1"
+# not on the Boot BOM; the groovy-5.0 variant matches the BOM's Groovy 5
+spock = "2.4-groovy-5.0"
+
+[libraries]
+spockSpring = { module = "org.spockframework:spock-spring", version.ref = "spock" }
+
+[plugins]
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }

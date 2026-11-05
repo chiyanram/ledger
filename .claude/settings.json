@@ -1,0 +1,8 @@
+{
+  "extraKnownMarketplaces": {
+    "chiyanram": { "source": { "source": "github", "repo": "chiyanram/skills" } }
+  },
+  "enabledPlugins": {
+    "rulebook@chiyanram": true
+  }
+}

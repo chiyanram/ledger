@@ -1,7 +1,7 @@
 # AGENTS.md
 
 The ledger records each factory ticket and each review round, so the factory can report rounds, buckets and tokens
-(agent-factory #62). Java 25 · Spring Boot 4.1 · PostgreSQL 18 · Flyway · Spock 2 · Testcontainers · Gradle.
+(agent-factory #62). Java 27 · Spring Boot 4.1 · PostgreSQL 18 · Flyway · Spock 2 · Testcontainers · Gradle.
 It runs locally only: no UI and no auth.
 
 ## MUSTs

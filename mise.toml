@@ -1,0 +1,4 @@
+# The toolchain this project builds with. mise installs it; the factory's srt runner reads it back read-only
+# (agent-factory #371). CI uses the same JDK (.github/workflows/check.yml).
+[tools]
+java = "temurin-25"

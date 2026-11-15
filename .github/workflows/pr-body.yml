@@ -1,6 +1,7 @@
 name: pr-body
 # The squash merge makes the description the commit body on main, so a pull request that is ready for review must hold
 # the template's lines, filled in (scripts/pr_body.py). A draft is not checked yet; marking it ready runs this.
+# A PR the factory opened (branch factory/<ticket>) is skipped: the engine writes its body, not the template.
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened, ready_for_review]
@@ -8,11 +9,13 @@ permissions:
   contents: read
 jobs:
   pr-body:
-    if: ${{ !github.event.pull_request.draft && github.event.pull_request.user.login != 'dependabot[bot]' }}
+    if: >-
+      ${{ !github.event.pull_request.draft && github.event.pull_request.user.login != 'dependabot[bot]'
+      && !startsWith(github.head_ref, 'factory/') }}
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Description follows the template
         env:
           BODY: ${{ github.event.pull_request.body }}

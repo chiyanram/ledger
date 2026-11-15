@@ -14,6 +14,9 @@ It runs locally only: no UI and no auth.
 
 ## Git and pull requests
 
+These rules are for people and interactive agent sessions. A factory run follows its task instead: it merges
+`origin/main` on a conflict, never rebases, and never pushes, because the engine pushes fast-forward only.
+
 - Do every change in its own git worktree, branched from the latest `origin/main`, and never commit in the main
   checkout, because agents and humans working in parallel then never share a working tree:
   `git fetch origin main && git worktree add .claude/worktrees/<name> -b <branch> origin/main`.
@@ -28,7 +31,8 @@ It runs locally only: no UI and no auth.
 - Open every pull request as a draft from `.github/pull_request_template.md`, fill in every line and leave no
   `<placeholder>`, because the squash merge makes the description the commit body on `main`, where it cannot be
   edited. The `pr-body` workflow (`scripts/pr_body.py`) fails a ready PR with a missing line, a placeholder or an
-  unticked item.
+  unticked item. It skips a PR the factory opened (branch `factory/<ticket>`), whose body is the engine's own lines
+  and then the implementer's PR1–PR7 sections.
 
 ## Read when relevant
 

@@ -27,7 +27,8 @@ It runs locally only: no UI and no auth.
   `cz check --message "<title>"` checks one. Branch commits are dropped by the squash, so they can be anything.
 - Open every pull request as a draft from `.github/pull_request_template.md`, fill in every line and leave no
   `<placeholder>`, because the squash merge makes the description the commit body on `main`, where it cannot be
-  edited.
+  edited. The `pr-body` workflow (`scripts/pr_body.py`) fails a ready PR with a missing line, a placeholder or an
+  unticked item.
 
 ## Read when relevant
 

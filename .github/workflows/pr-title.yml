@@ -1,0 +1,23 @@
+name: pr-title
+# Pull requests are squash-merged, so the title becomes the commit subject on main. The branch commits are dropped,
+# so only the title is checked, against the format in .cz.toml.
+on:
+  pull_request:
+    # edited reruns the check when the title changes.
+    types: [opened, synchronize, reopened, edited]
+permissions:
+  contents: read
+jobs:
+  pr-title:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install commitizen==4.19.3
+      - name: Title follows .cz.toml
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: cz check --message "$TITLE"

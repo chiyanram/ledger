@@ -12,6 +12,23 @@ It runs locally only: no UI and no auth.
 - Put every integration test under `src/integrationTest`, because `check` runs that suite in its own task, with
   PostgreSQL in a container.
 
+## Git and pull requests
+
+- Do every change in its own git worktree, branched from the latest `origin/main`, and never commit in the main
+  checkout, because agents and humans working in parallel then never share a working tree:
+  `git fetch origin main && git worktree add .claude/worktrees/<name> -b <branch> origin/main`.
+- Bring a worktree branch up to date by rebasing it onto `origin/main` (`git rebase origin/main`), not by merging main
+  into it, and push it with `git push --force-with-lease`, because a linear branch is easier to review and the lease
+  refuses to overwrite commits you have not fetched. Rebase and force-push only your own worktree branch: never
+  `--force` without a lease, and never rewrite `main`.
+- Write every pull request title as `type(scope): lower-case summary (chiyanram/agent-factory#N)`, the format
+  `.cz.toml` shares with chiyanram/skills and chiyanram/agent-factory, because the squash merge makes the title the
+  commit subject on `main` and the `pr-title` workflow fails any other form. `cz commit` prompts for each part;
+  `cz check --message "<title>"` checks one. Branch commits are dropped by the squash, so they can be anything.
+- Open every pull request as a draft from `.github/pull_request_template.md`, fill in every line and leave no
+  `<placeholder>`, because the squash merge makes the description the commit body on `main`, where it cannot be
+  edited.
+
 ## Read when relevant
 
 Read the named reference in full before you act.

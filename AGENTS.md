@@ -19,7 +19,9 @@ These rules are for people and interactive agent sessions. A factory run follows
 
 - Do every change in its own git worktree, branched from the latest `origin/main`, and never commit in the main
   checkout, because agents and humans working in parallel then never share a working tree:
-  `git fetch origin main && git worktree add .claude/worktrees/<name> -b <branch> origin/main`.
+  `git fetch origin main && git worktree add .claude/worktrees/<name> -b <branch> origin/main`. A cloud session's own
+  fresh clone, on the branch the session was given, counts as its worktree, because git cannot check that branch out a
+  second time.
 - Bring a worktree branch up to date by rebasing it onto `origin/main` (`git rebase origin/main`), not by merging main
   into it, and push it with `git push --force-with-lease`, because a linear branch is easier to review and the lease
   refuses to overwrite commits you have not fetched. Rebase and force-push only your own worktree branch: never
@@ -30,9 +32,13 @@ These rules are for people and interactive agent sessions. A factory run follows
   `cz check --message "<title>"` checks one. Branch commits are dropped by the squash, so they can be anything.
 - Open every pull request as a draft from `.github/pull_request_template.md`, fill in every line and leave no
   `<placeholder>`, because the squash merge makes the description the commit body on `main`, where it cannot be
-  edited. The `pr-body` workflow (`scripts/pr_body.py`) fails a ready PR with a missing line, a placeholder or an
-  unticked item. It skips a PR the factory opened (branch `factory/<ticket>`), whose body is the engine's own lines
-  and then the implementer's PR1–PR7 sections.
+  edited. That body is the whole description in the template's shape, not a short note: the reason, the readiness
+  lines, the evidence, the change and the checklist, with the footers last.
+- Mark a breaking change three ways that agree: `Breaking change: yes` in the description, `!` after the title's
+  scope, and a `BREAKING CHANGE:` footer, because the commit on `main` must say it in the same marks the other two
+  repos release by. The `pr-body` workflow (`scripts/pr_body.py`) fails a ready PR with a missing line, a
+  placeholder, an unticked item, or breaking-change marks that disagree. It skips a PR the factory opened (branch
+  `factory/<ticket>`), whose body is the engine's own lines and then the implementer's PR1–PR7 sections.
 
 ## Read when relevant
 

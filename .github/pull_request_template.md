@@ -1,6 +1,6 @@
 Why: <the reason for this change, in one sentence>. Spec: <the approved spec; with no spec, the ticket>
 
-Breaking change: <no; or yes, and what the factory must change to keep reading the ledger>
+Breaking change: <no; or yes, and what the factory must change to keep reading the ledger. A yes also takes "!" after the title's scope and a "BREAKING CHANGE:" footer above the Refs line>
 Rollback: <revert this PR; no data changes. Or how to undo it; an applied migration is undone by a new one>
 Where to look: <one to three places where a mistake would cost most>
 

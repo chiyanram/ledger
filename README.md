@@ -17,8 +17,11 @@ ledger records each factory ticket and each review round, so the factory can rep
 
 ## Rules
 
-[AGENTS.md](AGENTS.md) holds the rules agents and contributors follow. Its three MUSTs:
+[AGENTS.md](AGENTS.md) holds the rules agents and contributors follow. In short:
 
 - Write production code only after a human posts `/approved` on the draft pull request, and leave the merge to the human.
 - Keep `./gradlew check` green, because CI runs it on every pull request.
 - Put every integration test under `src/integrationTest`.
+- Work in a git worktree branched from `origin/main`; rebase onto main and push with `--force-with-lease`.
+- Write pull request titles in the shared Conventional Commits format ([.cz.toml](.cz.toml)), and fill in the
+  [template](.github/pull_request_template.md): the squash merge puts both on `main`.

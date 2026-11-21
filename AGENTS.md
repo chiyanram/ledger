@@ -42,13 +42,9 @@ These rules are for people and interactive agent sessions. A factory run follows
 
 ## Read when relevant
 
-Read the named reference in full before you act.
+Use the named skill (rulebook plugin) before you act.
 
-- Java code: use the `code` skill (rulebook plugin) and read its `java` reference.
-- Spring beans and configuration: use the `code` skill (rulebook plugin) and read its `spring` reference.
-- Errors and failure paths: use the `code` skill (rulebook plugin) and read its `errors` reference.
-- Choosing a test's tier: use the `testing` skill (rulebook plugin) and read its `strategy` reference.
-- Spock specs: use the `testing` skill (rulebook plugin) and read its `spock` reference.
-- Integration tests: use the `testing` skill (rulebook plugin) and read its `integration-tests` reference.
-- A Flyway migration: use the `migrations` skill (rulebook plugin) and read its `postgres-design` reference.
-- Log calls: use the `obs` skill (rulebook plugin) and read its `logging` reference.
+- Java code, Spring beans and configuration, errors and failure paths: the `code` skill.
+- A test, its tier, Spock specs and integration tests: the `testing` skill.
+- A Flyway migration: the `migrations` skill.
+- Log calls: the `obs` skill.
